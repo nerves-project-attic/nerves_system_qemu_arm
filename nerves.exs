@@ -1,8 +1,14 @@
 use Mix.Config
 
+version =
+  Path.join(__DIR__, "VERSION")
+  |> File.read!
+  |> String.strip
+
 config :nerves_system_qemu_arm, :nerves_env,
   type: :system,
-  bakeware: [target: "qemu_arm", recipe: "nerves/qemu_arm"],
+  mirrors: [
+    "https://github.com/nerves-project/nerves_system_br/releases/download/v#{version}/nerves_system_qemu_arm-nerves-v#{version}.tar.gz"],
   build_platform: Nerves.System.Platforms.BR,
   build_config: [
     defconfig: "nerves_defconfig"
