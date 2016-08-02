@@ -159,7 +159,7 @@ iface eth0 inet manual
 
 auto bridge1
 iface bridge1 inet static
-  address 192.168.0.110          # static IP of linux host
+  address 192.168.0.110         # static IP of linux host
   netmask 255.255.255.0
   gateway 192.168.0.1           # router
   dns-nameservers 192.168.0.1   # router again
