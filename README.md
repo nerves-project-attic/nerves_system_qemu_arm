@@ -124,7 +124,12 @@ and MacPorts. The following depicts installation from Homebrew:
 
 ### Networking on Linux
 
-Tested with Ubuntu 16.04 LTS Xenial Xerus, which uses QEMU version 2.5.0.
+**Note:** These instructions are valid for Ubuntu 16.04 LTS Xenial Xerus,
+which uses QEMU version 2.5.0. In the following, `eth0` is assumed to be the
+machine's primary physical network interface (Ethernet or Wi-Fi), and
+`bridge1` a virtual bridge interface that we'll create for use with QEMU. If
+those interface names don't work for you, adjust all instructions accordingly.
+Similarly, the subnet 192.168.0.0/24 is arbitrary; change it as required
 
 Development and testing was conducted on a remote machine over `ssh -X` for
 X-Windows forwarding.
@@ -137,7 +142,7 @@ Install QEMU and the network bridge utilities:
 
 #### 2. Bridge interface configuration
 
-This was done on an Intel NUC computer connected via ethernet to a home
+This was done on an Intel NUC computer connected via Ethernet to a home
 network and configured with a static IP address. The network is assumed
 to have a DHCP server on it somewhere, which will provide network config
 information to the QEMU guest.
@@ -150,23 +155,22 @@ auto lo
 iface lo inet loopback
 
 auto eth0
-# use whatever your kernel calls the ethernet interface instead of "p9p1"
-iface p9p1 inet manual
+iface eth0 inet manual
 
 auto bridge1
 iface bridge1 inet static
-	address 192.168.0.110		# static IP of linux host
-	netmask 255.255.255.0
-	gateway 192.168.0.1		# router
-	dns-nameservers 192.168.0.1	# router again
-	dns-search lan local
-	bridge_ports eth0
-	bridge_stp off
-	bridge_fd 0
-	bridge_maxwait 0
+  address 192.168.0.110          # static IP of linux host
+  netmask 255.255.255.0
+  gateway 192.168.0.1           # router
+  dns-nameservers 192.168.0.1   # router again
+  dns-search lan local
+  bridge_ports eth0
+  bridge_stp off
+  bridge_fd 0
+  bridge_maxwait 0
 ```
 
-Reboot the machine
+Reboot the machine.
 
 #### 3. Tap interface configuration
 
@@ -175,13 +179,17 @@ set up a tap interface joined to the main bridge. This will provide the QEMU
 (nerves) guest with an appearance on the LAN. Other configurations are
 possible using routed or NAT-ed "back-end" networks, but not covered here.
 
-These commands are provided by the `qemu-ifup.sh` script referenced below.
-`qemu-ifdown.sh` tears down the tap interface once the VM exits.
+**Note:** These commands are automatically executed by the `qemu-ifup.sh`
+script referenced below. `qemu-ifdown.sh` tears down the tap interface once
+the VM exits. If you already hav a `tap0` interface on your machine, you'll
+want to choose something else.
 
     # create the tap interface
     $ sudo ip tuntap add dev tap0 mode tap user `whoami`
+
     # enable the tap interface
     $ sudo ip link set tap0 up
+
     # add tap interface to existing bridge
     $ sudo brctl addif bridge1 tap0
 
