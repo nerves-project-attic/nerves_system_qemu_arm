@@ -27,7 +27,7 @@ make QEMU do this on Linux and/or OS X please let us know!
 
 ### Hello, Nerves!
 
-Here's a baseline example of how to run the Nerves [getting started
+Here follows a baseline example of how to run the Nerves [getting started
 example](https://hexdocs.pm/nerves/getting-started.html) on QEMU:
 
     $ mix nerves.new hello_nerves --target qemu_arm
@@ -45,7 +45,9 @@ example](https://hexdocs.pm/nerves/getting-started.html) on QEMU:
 
 If all goes well, you will shortly see the QEMU graphical monitor console
 pop up, displaying the Nerves logo in the top left corner and running an
-interactive Elixir shell (IEx).
+interactive Elixir shell (IEx):
+
+[![Screenshot](https://i.imgur.com/9JEMMGE.jpg)](http://imgur.com/9JEMMGE)
 
 ## Networking
 
