@@ -47,7 +47,7 @@ If all goes well, you will shortly see the QEMU graphical monitor console
 pop up, displaying the Nerves logo in the top left corner and running an
 interactive Elixir shell (IEx):
 
-[![Screenshot](https://i.imgur.com/9JEMMGE.jpg)](http://imgur.com/9JEMMGE)
+[![Screenshot](https://i.imgur.com/9JEMMGEh.jpg)](https://i.imgur.com/9JEMMGE.jpg)
 
 ## Networking
 
@@ -101,6 +101,8 @@ Configure your Mac such that packets arriving from the `bridge1` interface
 are routed correctly, and enable NAT such that response packets find their
 way back:
 
+    $ curl -OL https://github.com/nerves-project/nerves_system_qemu_arm/raw/develop/qemu-pf.conf
+
     $ sudo sysctl -w net.inet.ip.forwarding=1
     $ sudo pfctl -F all              # flush existing rules
     $ sudo pfctl -f qemu-pf.conf     # load NAT rules for bridge1
@@ -121,6 +123,9 @@ example:
     $ git clone https://github.com/nerves-project/nerves-examples.git
 
     $ cd nerves-examples/hello_network
+
+    $ curl -OL https://github.com/nerves-project/nerves_system_qemu_arm/raw/develop/qemu-ifup.sh
+    $ curl -OL https://github.com/nerves-project/nerves_system_qemu_arm/raw/develop/qemu-ifdown.sh
 
     $ NERVES_TARGET=qemu_arm mix deps.get
 
