@@ -112,7 +112,16 @@ If you know how to improve this, please contribute a README improvement.)
 
 #### 4. DHCP configuration
 
-**TODO**
+As a last prerequisite, let's set up
+[Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) to handle DHCP
+requests on the `bridge1` interface. Dnsmasq is available via both Homebrew
+and MacPorts. The following depicts installation from Homebrew:
+
+    $ brew install dnsmasq
+
+    $ curl -OL https://github.com/nerves-project/nerves_system_qemu_arm/raw/develop/qemu-dnsmasq.conf
+
+    $ dnsmasq --conf-file=qemu-dnsmasq.conf  # daemonizes into the background
 
 ### Hello, Network!
 
@@ -148,6 +157,8 @@ DNS name resolution works by typing in:
     {:ok,
      {:hostent, 'nerves-project.org', [], :inet, 4,
       [{192, 30, 252, 154}, {192, 30, 252, 153}]}}
+
+[![Screenshot](http://i.imgur.com/tjcVfHdh.jpg)](http://i.imgur.com/tjcVfHd.jpg)
 
 ## Installation
 
