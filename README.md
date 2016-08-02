@@ -15,13 +15,12 @@ This is the base Nerves System configuration for [QEMU](http://wiki.qemu.org/Mai
 | PWM                  | No                              |
 | UART                 | No                              |
 | Camera               | No                              |
-| Ethernet             | Yes*                            |
+| Ethernet             | Yes                             |
 | WiFi                 | No                              |
 | Bluetooth            | No                              |
 
-This is the start of a QEMU configuration. Help is needed to make Ethernet
-work so that it's possible to `remsh` into the image. If you know how to
-make QEMU do this on Linux and/or OS X please let us know!
+This is the start of a QEMU configuration. Instructions are given below
+to make networking work on Linux and OS X QEMU hosts.
 
 ## Booting
 
@@ -122,6 +121,70 @@ and MacPorts. The following depicts installation from Homebrew:
     $ curl -OL https://github.com/nerves-project/nerves_system_qemu_arm/raw/develop/qemu-dnsmasq.conf
 
     $ dnsmasq --conf-file=qemu-dnsmasq.conf  # daemonizes into the background
+
+### Networking on Linux
+
+Tested with Ubuntu 16.04 LTS Xenial Xerus, which uses QEMU version 2.5.0.
+
+Development and testing was conducted on a remote machine over `ssh -X` for
+X-Windows forwarding.
+
+#### 1. Prerequisites
+
+Install QEMU and the network bridge utilities:
+
+    $ sudo apt-get install qemu-system-arm bridge-utils
+
+#### 2. Bridge interface configuration
+
+This was done on an Intel NUC computer connected via ethernet to a home
+network and configured with a static IP address. The network is assumed
+to have a DHCP server on it somewhere, which will provide network config
+information to the QEMU guest.
+
+Edit (as root) `/etc/network/interfaces` to look something like this:
+
+```
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto lo
+iface lo inet loopback
+
+auto eth0
+# use whatever your kernel calls the ethernet interface instead of "p9p1"
+iface p9p1 inet manual
+
+auto bridge1
+iface bridge1 inet static
+	address 192.168.0.110		# static IP of linux host
+	netmask 255.255.255.0
+	gateway 192.168.0.1		# router
+	dns-nameservers 192.168.0.1	# router again
+	dns-search lan local
+	bridge_ports eth0
+	bridge_stp off
+	bridge_fd 0
+	bridge_maxwait 0
+```
+
+Reboot the machine
+
+#### 3. Tap interface configuration
+
+In conjunction with the networking setup in `/etc/network/interfaces` above,
+set up a tap interface joined to the main bridge. This will provide the QEMU
+(nerves) guest with an appearance on the LAN. Other configurations are
+possible using routed or NAT-ed "back-end" networks, but not covered here.
+
+These commands are provided by the `qemu-ifup.sh` script referenced below.
+`qemu-ifdown.sh` tears down the tap interface once the VM exits.
+
+    # create the tap interface
+    $ sudo ip tuntap add dev tap0 mode tap user `whoami`
+    # enable the tap interface
+    $ sudo ip link set tap0 up
+    # add tap interface to existing bridge
+    $ sudo brctl addif bridge1 tap0
+
 
 ### Hello, Network!
 
