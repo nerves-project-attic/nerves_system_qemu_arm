@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.6.1
+
+  * Package versions
+    * Nerves.System.BR v0.6.1
+
+  * New features
+    * Update docs/scripts on how to run qemu
+    * Switch terminal output from video output to emulated serial port
+
 ## v0.6.0
   * Nerves.System.BR v0.6.0
     * Package updates
