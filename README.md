@@ -9,7 +9,7 @@ This is the base Nerves System configuration for [QEMU](http://wiki.qemu.org/Mai
 | Memory               | Per QEMU commandline            |
 | Storage              | N/A                             |
 | Linux kernel         | 4.4.1                           |
-| IEx terminal         | tty1                            |
+| IEx terminal         | ttyAMA0                         |
 | GPIO, I2C, SPI       | No                              |
 | ADC                  | No                              |
 | PWM                  | No                              |
