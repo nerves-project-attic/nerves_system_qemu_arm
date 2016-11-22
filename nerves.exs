@@ -5,16 +5,26 @@ version =
   |> File.read!
   |> String.strip
 
-config :nerves_system_qemu_arm, :nerves_env,
+pkg = :nerves_system_qemu_arm
+
+config pkg, :nerves_env,
   type: :system,
   version: version,
-  mirrors: [
-    "https://github.com/nerves-project/nerves_system_qemu_arm/releases/download/v#{version}/nerves_system_qemu_arm-v#{version}.tar.gz",
-    "https://s3.amazonaws.com/nerves/artifacts/nerves_system_qemu_arm-#{version}.tar.gz"],
-  build_platform: Nerves.System.Platforms.BR,
-  build_config: [
+  compiler: :nerves_package,
+  artifact_url: [
+    "https://github.com/nerves-project/#{pkg}/releases/download/v#{version}/#{pkg}-v#{version}.tar.gz",
+  ],
+  platform: Nerves.System.BR,
+  platform_config: [
     defconfig: "nerves_defconfig",
-    package_files: [
-      "rootfs-additions"
-    ]
+  ],
+  checksum: [
+    "rootfs-additions",
+    "scripts",
+    "nerves_defconfig",
+    "qemu-dnsmasq.conf",
+    "qemu-ifdown.sh",
+    "qemu-ifup.sh",
+    "qemu-pf.conf",
+    "VERSION"
   ]
