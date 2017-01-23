@@ -45,9 +45,12 @@ before_script:
 script:
   - mix local.hex --force
   - mix local.rebar --force
-  - mix archive.install https://github.com/nerves-project/archives/raw/master/nerves_bootstrap.ez --force
   - mix deps.get
+  - mix archive.install https://github.com/nerves-project/archives/raw/master/nerves_bootstrap.ez --force
   - mix compile
+  # Testing should be moved to locally execute mix test.
+  #  This will centralize the test suite for systems to the nerves package
+  #  Removing these for now
   # - export NERVES_SYSTEM=$NERVES_PACKAGE/_build/dev/nerves/system
   # - export NERVES_TOOLCHAIN=$NERVES_PACKAGE/_build/dev/nerves/toolchain
   # - git clone https://github.com/nerves-project/nerves-examples
