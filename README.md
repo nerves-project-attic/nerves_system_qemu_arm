@@ -29,18 +29,19 @@ to make networking work on Linux and OS X QEMU hosts.
 Here follows a baseline example of how to run the Nerves [getting started
 example](https://hexdocs.pm/nerves/getting-started.html) on QEMU:
 
-    $ mix nerves.new hello_nerves --target qemu_arm
+```
+# Create a project
+mix nerves.new hello_nerves --target qemu_arm
 
-    $ cd hello_nerves && mix deps.get && mix firmware
+# Build it
+cd hello_nerves && mix deps.get && mix firmware
 
-    $ fwup -a -d _images/qemu_arm/hello_nerves.img -i _images/qemu_arm/hello_nerves.fw -t complete
+# Create the base image. This will be used for the virtual SDCard to the
+# emulator.
+fwup -a -d _images/qemu_arm/hello_nerves.img -i _images/qemu_arm/hello_nerves.fw -t complete
 
-    $ qemu-system-arm -M vexpress-a9 -smp 1 -m 256                         \
-        -kernel _build/qemu_arm/dev/nerves/system/images/zImage            \
-        -dtb _build/qemu_arm/dev/nerves/system/images/vexpress-v2p-ca9.dtb \
-        -drive file=_images/qemu_arm/hello_nerves.img,if=sd,format=raw     \
-        -append "console=ttyAMA0,115200 root=/dev/mmcblk0p2" -serial stdio \
-        -net none
+# Run Qemu
+qemu-system-arm -M vexpress-a9 -m 1024M -kernel images/u-boot -drive file=images/nerves_system_qemu_arm.img,if=sd,format=raw -net nic,model=lan9118 -net user,hostfwd=tcp::9898-:9898
 
 If all goes well, you will shortly see the QEMU graphical monitor console
 pop up, displaying the Nerves logo in the top left corner and running an
@@ -246,3 +247,11 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
         def application do
           [applications: [:nerves_system_qemu_arm]]
         end
+
+## Starting a local web browser for use as a kiosk
+
+Run this:
+
+```
+:os.cmd('qt-webkit-kiosk -platform linuxfb -c /etc/qt-webkit-kiosk.ini').
+```
