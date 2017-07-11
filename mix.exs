@@ -7,11 +7,11 @@ defmodule NervesSystemQemuArm.Mixfile do
 
   def project do
     [app: :nerves_system_qemu_arm,
-    version: @version,
+     version: @version,
      elixir: "~> 1.3",
-    compilers: Mix.compilers ++ [:nerves_package],
-    description: description(),
-    package: package(),
+     compilers: Mix.compilers ++ [:nerves_package],
+     description: description(),
+     package: package(),
      deps: deps(),
      aliases: ["deps.precompile": ["nerves.env", "deps.precompile"]]]
   end
