@@ -19,7 +19,7 @@ config pkg, :nerves_env,
     defconfig: "nerves_defconfig",
   ],
   checksum: [
-    "rootfs-additions",
+    "rootfs_overlay",
     "scripts",
     "nerves_defconfig",
     "qemu-dnsmasq.conf",
