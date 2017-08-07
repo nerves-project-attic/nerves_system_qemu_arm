@@ -26,5 +26,6 @@ config pkg, :nerves_env,
     "qemu-ifdown.sh",
     "qemu-ifup.sh",
     "qemu-pf.conf",
-    "VERSION"
+    "VERSION",
+    "fwup.conf"
   ]
