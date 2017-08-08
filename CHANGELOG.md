@@ -1,10 +1,27 @@
 # Changelog
 
-## v0.12.0-dev
+## v0.12.0
+  * New features
+    * Added `mix nerves.qemu.run` command to boot into qemu using Nerves.Shell
+    * The application data partition is now `ext4`. This greatly improves its
+      robustness to corruption. Nerves.Runtime contains code to initialize it on
+      first boot.
+    * Firmware images now contain metadata that can be queried at runtime (see
+      Nerves.Runtime.KV
+    * Firmware updates verify that they're updating the right target. If the target
+      doesn't say that it's an `qemu` through the firmware metadata, the update
+      will fail.
+    * Added meta-misc and meta-vcs-identifier to the `fwup.conf` metadata for use
+      by users and for the regression test framework
+    * Added qt-webkit-kiosk
 
-  * nerves_system_br v0.10.0
-    * Buildroot 2017.02
-    * Erlang/OTP 19.3
+  * Tool Dependencies
+    * nerves_toolchain_arm_unknown_linux_gnueabihf 0.11.0
+      https://github.com/nerves-project/toolchains/releases/tag/v0.11.0
+    * fwup 0.15.4
+    * nerves_system_br v0.13.5
+      * Buildroot 2017.05
+      * Erlang/OTP 20.0
 
 ## v0.11.0
   * New Features
