@@ -27,5 +27,6 @@ config pkg, :nerves_env,
     "qemu-ifup.sh",
     "qemu-pf.conf",
     "VERSION",
-    "fwup.conf"
+    "fwup.conf",
+    "linux-4.4.defconfig"
   ]
