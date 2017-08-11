@@ -2,7 +2,6 @@
 
 ## v0.12.0
   * New features
-    * Added `mix nerves.qemu.run` command to boot into qemu using Nerves.Shell
     * The application data partition is now `ext4`. This greatly improves its
       robustness to corruption. Nerves.Runtime contains code to initialize it on
       first boot.
