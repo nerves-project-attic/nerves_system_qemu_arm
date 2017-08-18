@@ -1,5 +1,5 @@
 # Generic ARM Cortex A9 image for QEMU
-[![Build Status](https://travis-ci.org/nerves-project/nerves_system_qemu_arm.png?branch=master)](https://travis-ci.org/nerves-project/nerves_system_qemu_arm)
+[![CircleCI](https://circleci.com/gh/nerves-project/nerves_system_qemu_arm.svg?style=svg)](https://circleci.com/gh/nerves-project/nerves_system_qemu_arm)
 
 This is the base Nerves System configuration for generic ARM platform emulated
 by [QEMU](https://www.qemu.org/).
