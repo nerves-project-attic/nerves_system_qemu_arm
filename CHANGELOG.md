@@ -1,6 +1,17 @@
 # Changelog
 
+## v0.12.1
+
+The documentation has been completely updated to reflect the new way of
+launching qemu. The old documentation has been retained since it contains so
+much useful information. It can be found in the `old` directory.
+
+  * New features
+    * Added the `mix nerves.gen.qemu_script` helper to create the starter shell
+      script for running qemu
+
 ## v0.12.0
+
   * New features
     * The application data partition is now `ext4`. This greatly improves its
       robustness to corruption. Nerves.Runtime contains code to initialize it on
@@ -23,6 +34,7 @@
       * Erlang/OTP 20.0
 
 ## v0.11.0
+
   * New Features
     * Support for Nerves 0.5.0
 
@@ -32,8 +44,9 @@
     * Bump toolchain to use gcc 5.3 (previously using gcc 4.9.3)
 
 ## v0.9.1
-* Bug Fixes
-  * Loosen mistaken nerves dep on `0.4.0` to `~> 0.4.0`
+
+  * Bug Fixes
+    * Loosen mistaken nerves dep on `0.4.0` to `~> 0.4.0`
 
 ## v0.9.0
 
