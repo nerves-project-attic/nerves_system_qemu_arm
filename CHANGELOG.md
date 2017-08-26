@@ -1,5 +1,7 @@
 # Changelog
 
+## v0.12.2-dev
+
 ## v0.12.1
 
 The documentation has been completely updated to reflect the new way of
