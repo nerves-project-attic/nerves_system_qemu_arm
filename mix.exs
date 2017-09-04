@@ -36,7 +36,9 @@ defmodule NervesSystemQemuArm.Mixfile do
 
   defp package do
     [maintainers: ["Frank Hunleth", "Justin Schneck"],
-     files: ["LICENSE", "mix.exs", "nerves_defconfig", "nerves.exs", "README.md", "VERSION", "rootfs_overlay"],
+     files: ["LICENSE", "mix.exs", "nerves_defconfig", "nerves.exs",
+             "README.md", "VERSION", "rootfs_overlay", "lib",
+             "priv"],
      licenses: ["Apache 2.0"],
      links: %{"Github" => "https://github.com/nerves-project/nerves_system_qemu_arm"}]
   end
