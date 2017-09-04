@@ -1,6 +1,9 @@
 # Changelog
 
-## v0.12.2-dev
+## v0.12.2
+
+  * Bug fixes
+    * Hex package was missing the nerves.gen.qemu_script helper
 
 ## v0.12.1
 
