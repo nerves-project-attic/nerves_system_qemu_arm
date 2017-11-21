@@ -32,6 +32,7 @@ version: 2.0
 jobs:
   build_system:
     <<: *defaults
+    resource_class: large
     steps:
       - checkout
       - <<: *install_elixir
