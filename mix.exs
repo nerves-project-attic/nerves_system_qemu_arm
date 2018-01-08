@@ -71,8 +71,10 @@ defmodule NervesSystemQemuArm.Mixfile do
       "VERSION",
       "rootfs_overlay",
       "fwup.conf",
-      "linux-4.4.defconfig",
+      "fwup-revert.conf",
       "post-createfs.sh",
+      "post-build.sh",
+      "linux-4.4.defconfig",
       "lib",
       "priv"
     ]
