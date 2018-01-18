@@ -1,6 +1,13 @@
 # Changelog
 
-## v0.15.1-dev
+## v0.15.1
+
+  Updated dependencies
+  * [nerves_system_br v0.16.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v0.16.4)
+
+  * Changes
+    * Disabled the linter in CI since it reports a false error and the fix will
+      take some time.
 
 ## v0.15.0
 
