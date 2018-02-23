@@ -1,5 +1,7 @@
 # Generic ARM Cortex A9 image for QEMU
+
 [![CircleCI](https://circleci.com/gh/nerves-project/nerves_system_qemu_arm.svg?style=svg)](https://circleci.com/gh/nerves-project/nerves_system_qemu_arm)
+[![Hex version](https://img.shields.io/hexpm/v/nerves_system_qemu_arm.svg "Hex version")](https://hex.pm/packages/nerves_system_qemu_arm)
 
 This is the base Nerves System configuration for generic ARM platform emulated
 by [QEMU](https://www.qemu.org/).
@@ -39,7 +41,7 @@ the baseline [Nerves getting started
 example](https://hexdocs.pm/nerves/getting-started.html) with the additions of
 networking and ssh firmware update support. Here's how to use it:
 
-```
+```bash
 cd examples/hello_nerves
 export MIX_TARGET=qemu_arm
 
@@ -81,6 +83,6 @@ The `hello_nerves` example also contains a trivial single page website to
 demonstrate kiosk mode. To see it, start the example in QEMU and at the iex
 prompt, run this:
 
-```
+```elixir
 :os.cmd('qt-webkit-kiosk -platform linuxfb -c /etc/qt-webkit-kiosk.ini').
 ```
