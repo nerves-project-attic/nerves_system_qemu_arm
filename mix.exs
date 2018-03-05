@@ -3,8 +3,8 @@ defmodule NervesSystemQemuArm.Mixfile do
 
   @app :nerves_system_qemu_arm
   @version Path.join(__DIR__, "VERSION")
-    |> File.read!
-    |> String.trim
+           |> File.read!()
+           |> String.trim()
 
   def project do
     [
@@ -47,7 +47,7 @@ defmodule NervesSystemQemuArm.Mixfile do
 
   defp deps do
     [
-      {:nerves, "~> 1.0-rc", runtime: false },
+      {:nerves, "~> 1.0-rc", runtime: false},
       {:nerves_system_br, "~> 1.0-rc", runtime: false},
       {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 1.0-rc", runtime: false},
       {:nerves_system_linter, "~> 0.3.0", runtime: false},
