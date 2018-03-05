@@ -1,4 +1,4 @@
-defmodule NervesSystemQemuArm.Mixfile do
+defmodule NervesSystemQemuArm.MixProject do
   use Mix.Project
 
   @app :nerves_system_qemu_arm
