@@ -26,7 +26,7 @@ defmodule NervesSystemQemuArm.MixProject do
   end
 
   defp bootstrap(args) do
-    System.put_env("MIX_TARGET", "rpi")
+    System.put_env("MIX_TARGET", "qemu_arm")
     Application.start(:nerves_bootstrap)
     Mix.Task.run("loadconfig", args)
   end
