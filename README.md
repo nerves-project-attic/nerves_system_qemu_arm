@@ -22,6 +22,23 @@ by [QEMU](https://www.qemu.org/).
 | WiFi                 | No                              |
 | Bluetooth            | No                              |
 
+## Important info
+
+We've found working with QEMU to be slower than working with real hardware. This
+likely is due to us not configuring it appropriately, but keep this in mind if
+you use this system.
+
+## Using
+
+The most common way of using this Nerves System is create a project with `mix
+nerves.new` and to export `MIX_TARGET=qemu_arm`. See the [Getting started
+guide](https://hexdocs.pm/nerves/getting-started.html#creating-a-new-nerves-app)
+for more information.
+
+If you need custom modifications to this system for your device, clone this
+repository and update as described in [Making custom
+systems](https://hexdocs.pm/nerves/systems.html#customizing-your-own-nerves-system)
+
 Unlike other Nerves systems, this one does not contain a minimal configuration
 since it is expected to be used exclusively for debugging on a fast computer.
 Currently, it contains the following additional packages:
